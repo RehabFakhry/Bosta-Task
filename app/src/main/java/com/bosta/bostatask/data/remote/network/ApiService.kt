@@ -1,8 +1,8 @@
 package com.bosta.bostatask.data.remote.network
 
-import com.bosta.bostatask.data.remote.models.UserAlbumPhotoDto
-import com.bosta.bostatask.data.remote.models.UserAlbumsDto
-import com.bosta.bostatask.data.remote.models.UserInfoDto
+import com.bosta.bostatask.data.remote.model.UserAlbumPhotoDto
+import com.bosta.bostatask.data.remote.model.UserAlbumsDto
+import com.bosta.bostatask.data.remote.model.UserInfoDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
