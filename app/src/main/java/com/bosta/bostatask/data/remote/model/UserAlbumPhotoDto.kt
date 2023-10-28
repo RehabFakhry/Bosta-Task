@@ -1,4 +1,4 @@
-package com.bosta.bostatask.data.remote.models
+package com.bosta.bostatask.data.remote.model
 
 
 import com.google.gson.annotations.SerializedName
