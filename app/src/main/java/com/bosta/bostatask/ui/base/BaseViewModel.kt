@@ -3,6 +3,7 @@ package com.bosta.bostatask.ui.base
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bosta.bostatask.ui.utils.EventHandler
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -38,19 +39,6 @@ abstract class BaseViewModel<T, E>(initialState: T): ViewModel() {
                 Log.e(TAG, "tryToExecute: ${e.message}")
                 onError(e)
             }
-        }
-    }
-}
-
-
-class EventHandler<out T>(private val content: T) {
-    private var hasBeenHandled = false
-
-    fun getContentIfHandled(): T? {
-        return if (hasBeenHandled) null
-        else {
-            hasBeenHandled = true
-            content
         }
     }
 }
