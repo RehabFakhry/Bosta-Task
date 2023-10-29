@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import com.bosta.bostatask.BR
-import com.bosta.bostatask.R
 
 
 abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
@@ -35,7 +34,7 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
         _binding.apply {
             lifecycleOwner = viewLifecycleOwner
-            setVariable(BR._all, viewModel)
+            setVariable(BR.viewModel, viewModel)
             return root
         }
     }
