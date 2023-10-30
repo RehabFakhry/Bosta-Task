@@ -1,12 +1,7 @@
 package com.bosta.bostatask.ui.feature.album_details
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import com.bosta.bostatask.R
 import com.bosta.bostatask.databinding.FragmentAlbumDetailsBinding
 import com.bosta.bostatask.ui.base.BaseFragment
@@ -22,10 +17,28 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
 
     override fun setup() {
         initiateAdapter()
+        searchOnImage()
     }
 
     private fun initiateAdapter() {
         binding.recyclerViewAlbumPhotos.adapter = albumDetailsAdapter
     }
 
+    private fun searchOnImage() {
+        val searchView = binding.searchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                viewModel.searchPhotos(query.orEmpty())
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.searchPhotos(newText.orEmpty())
+                return true
+            }
+        })
+
+    }
 }
+
+
