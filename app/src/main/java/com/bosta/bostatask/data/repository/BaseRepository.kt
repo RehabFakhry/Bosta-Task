@@ -6,11 +6,11 @@ import retrofit2.Response
 
 abstract class BaseRepository {
 
-    protected suspend fun <T> wrap(function: suspend() -> Response<T>): T {
+    protected suspend fun <T: Any> wrap(function: suspend() -> Response<T>): T {
         try {
             val response = function()
-            return if (response.isSuccessful) {
-                response.body() ?: throw NotFoundException()
+            if (response.isSuccessful) {
+                return response.body() ?: throw NotFoundException()
             } else {
                 Log.d("Tag", "Repository failed")
                 when (response.code()) {
