@@ -13,6 +13,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val viewModel: HomeViewModel by viewModels()
     private val homeAdapter: HomeAdapter by lazy { HomeAdapter(viewModel) }
 
+
     override fun setup() {
         initiateAdapter()
     }
