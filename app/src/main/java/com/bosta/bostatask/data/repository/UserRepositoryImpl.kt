@@ -13,8 +13,8 @@ import javax.inject.Inject
 class UserRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ): BaseRepository(), UserRepository {
-    override suspend fun getUserInfo(): List<UserInfo> {
-        return wrap { apiService.getUserInfo()}.map{it.toUserInfo()}
+    override suspend fun getUserInfo(userId: Int): List<UserInfo> {
+        return wrap { apiService.getUserInfo(userId)}.map { it.toUserInfo() }
     }
 
     override suspend fun getAllAlbumsForUser(userId: Int): List<UserAlbums> {

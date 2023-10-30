@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("users")
-    suspend fun getUserInfo(): Response<List<UserInfoDto>>
+    suspend fun getUserInfo(@Query("id") userId: Int): Response<List<UserInfoDto>>
 
     @GET("albums")
     suspend fun getAllAlbumsForUser(@Query("userId") userId: Int): Response<List<UserAlbumsDto>>
