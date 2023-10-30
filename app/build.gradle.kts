@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-//    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs")
+//    id("androidx.navigation.safeargs.kotlin")
     id("com.google.dagger.hilt.android")
 }
 
@@ -69,6 +70,9 @@ dependencies {
 
     // Glide dependency
     implementation("com.github.bumptech.glide:glide:4.15.1")
+
+    // coil
+    implementation ("io.coil-kt:coil:2.2.2")
 
     // LiveData and related dependencies
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
