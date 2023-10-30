@@ -1,10 +1,13 @@
 package com.bosta.bostatask.ui.feature.home
 
+import androidx.lifecycle.viewModelScope
 import com.bosta.bostatask.domain.usecase.GetUserAlbumsUseCase
 import com.bosta.bostatask.domain.usecase.GetUserInfoUseCase
 import com.bosta.bostatask.ui.base.BaseViewModel
+import com.bosta.bostatask.ui.utils.EventHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -12,7 +15,7 @@ import kotlin.random.Random
 class HomeViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserAlbumsUseCase: GetUserAlbumsUseCase
-): BaseViewModel<HomeUiState, Long>(HomeUiState()), HomeInteractionListener {
+): BaseViewModel<HomeUiState, Int>(HomeUiState()), HomeInteractionListener {
 
     override val TAG: String = this::class.java.simpleName
 
@@ -71,6 +74,6 @@ class HomeViewModel @Inject constructor(
 
 
     override fun onClickAlbum(albumId: Int) {
-        TODO("Not yet implemented")
+        viewModelScope.launch { _effect.emit(EventHandler(albumId)) }
     }
 }
