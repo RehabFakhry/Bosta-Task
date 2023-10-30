@@ -1,6 +1,6 @@
-package com.bosta.bostatask.data.remote.mapper
+package com.bosta.bostatask.data.source.remote.mapper
 
-import com.bosta.bostatask.data.remote.model.UserInfoDto
+import com.bosta.bostatask.data.source.remote.model.UserInfoDto
 import com.bosta.bostatask.domain.model.UserInfo
 
 fun UserInfoDto.toUserInfo() = UserInfo(

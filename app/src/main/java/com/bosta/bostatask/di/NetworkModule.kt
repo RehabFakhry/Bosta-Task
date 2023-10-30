@@ -1,6 +1,6 @@
 package com.bosta.bostatask.di
 
-import com.bosta.bostatask.data.remote.network.ApiService
+import com.bosta.bostatask.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
