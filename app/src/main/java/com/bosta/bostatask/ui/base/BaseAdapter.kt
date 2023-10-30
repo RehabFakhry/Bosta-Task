@@ -26,8 +26,8 @@ abstract class BaseAdapter<T>(
 
     }
 
-    private fun areSameItem(oldItem: T, newItem: T) = oldItem?.equals(newItem) == true
-    private fun areSameContent(oldPosition: T, newPosition: T) = true
+    open fun areSameItem(oldItem: T, newItem: T) = oldItem?.equals(newItem) == true
+    open fun areSameContent(oldPosition: T, newPosition: T) = true
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
