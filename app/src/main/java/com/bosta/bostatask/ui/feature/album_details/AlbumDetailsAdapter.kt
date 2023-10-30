@@ -9,4 +9,6 @@ class AlbumDetailsAdapter(listener: AlbumDetailsInteractionListener)
     override val layoutId: Int = R.layout.item_album_details
 }
 
-interface AlbumDetailsInteractionListener: BaseInteractionListener
+interface AlbumDetailsInteractionListener: BaseInteractionListener{
+    fun onClickPhoto()
+}
