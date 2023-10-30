@@ -6,7 +6,7 @@ import com.bosta.bostatask.domain.model.UserInfo
 
 interface UserRepository {
 
-    suspend fun getAllUsers(): List<UserInfo>?
+    suspend fun getUserInfo(userId: Int): List<UserInfo>?
 
     suspend fun getAllAlbumsForUser(userId: Int): List<UserAlbums>?
 

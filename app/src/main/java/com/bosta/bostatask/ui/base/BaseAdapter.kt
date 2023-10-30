@@ -8,8 +8,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bosta.bostatask.BR
 
-abstract class BaseAdapter<T>(private val listener: BaseInteractionListener) :
-    RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
+
+interface BaseInteractionListener
+
+abstract class BaseAdapter<T>(
+    private val listener: BaseInteractionListener
+) : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>() {
 
     private var items = emptyList<T>()
     abstract val layoutId: Int
@@ -22,8 +26,8 @@ abstract class BaseAdapter<T>(private val listener: BaseInteractionListener) :
 
     }
 
-    private fun areSameItem(oldItem: T, newItem: T) = oldItem?.equals(newItem) == true
-    private fun areSameContent(oldPosition: T, newPosition: T) = true
+    open fun areSameItem(oldItem: T, newItem: T) = oldItem?.equals(newItem) == true
+    open fun areSameContent(oldPosition: T, newPosition: T) = true
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -41,7 +45,7 @@ abstract class BaseAdapter<T>(private val listener: BaseInteractionListener) :
         when (holder) {
             is ItemViewHolder -> {
                 holder.binding.apply {
-                    setVariable(BR.viewModel, currentItem)
+                    setVariable(BR.item, currentItem)
                     setVariable(BR.listener, listener)
                 }
             }
@@ -54,4 +58,3 @@ abstract class BaseAdapter<T>(private val listener: BaseInteractionListener) :
     abstract class BaseViewHolder(binding: ViewDataBinding) : RecyclerView.ViewHolder(binding.root)
 }
 
-interface BaseInteractionListener
