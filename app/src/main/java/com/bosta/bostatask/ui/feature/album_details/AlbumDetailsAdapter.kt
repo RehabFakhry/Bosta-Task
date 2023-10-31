@@ -10,5 +10,5 @@ class AlbumDetailsAdapter(listener: AlbumDetailsInteractionListener)
 }
 
 interface AlbumDetailsInteractionListener: BaseInteractionListener{
-    fun onClickPhoto()
+    fun onClickAlbumImage(imageId: Int)
 }

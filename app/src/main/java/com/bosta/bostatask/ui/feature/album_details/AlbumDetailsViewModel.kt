@@ -1,11 +1,14 @@
 package com.bosta.bostatask.ui.feature.album_details
 
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.viewModelScope
 import com.bosta.bostatask.domain.usecase.GetUserAlbumPhotoUseCase
 import com.bosta.bostatask.ui.base.BaseViewModel
+import com.bosta.bostatask.ui.utils.EventHandler
 import com.bumptech.glide.Glide.init
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,6 +20,9 @@ class AlbumDetailsViewModel @Inject constructor(
     override val TAG: String = this::class.java.simpleName
 
     private val args = AlbumDetailsFragmentArgs.fromSavedStateHandle(savedStateHandle)
+
+    private var searchResultsFound: Boolean = true
+
 
     init {
         getAllPhotosForAlbum()
@@ -33,9 +39,14 @@ class AlbumDetailsViewModel @Inject constructor(
 
     fun searchPhotos(query: String) {
         val filteredPhotos = _state.value.albumPhoto.filter { photo ->
-            photo.title!!.contains(query, ignoreCase = true)
+            photo.title?.contains(query, ignoreCase = true) == true
         }
+        searchResultsFound = filteredPhotos.isNotEmpty()
         _state.update { it.copy(albumPhoto = filteredPhotos) }
+    }
+
+    fun isSearchResultsFound(): Boolean {
+        return searchResultsFound
     }
 
     private fun onGetUserAlbumPhotosSuccess(albumPhotos: List<UserAlbumPhotos>) {
@@ -54,7 +65,7 @@ class AlbumDetailsViewModel @Inject constructor(
         log("error fetching data")
     }
 
-    override fun onClickPhoto() {
-        TODO("Not yet implemented")
+    override fun onClickAlbumImage(imageId: Int) {
+        viewModelScope.launch { _effect.emit(EventHandler(imageId)) }
     }
 }

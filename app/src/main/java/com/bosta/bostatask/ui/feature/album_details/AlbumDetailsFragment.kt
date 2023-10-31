@@ -2,9 +2,11 @@ package com.bosta.bostatask.ui.feature.album_details
 
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.bosta.bostatask.R
 import com.bosta.bostatask.databinding.FragmentAlbumDetailsBinding
 import com.bosta.bostatask.ui.base.BaseFragment
+import com.bosta.bostatask.ui.utils.collect
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -18,6 +20,7 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
     override fun setup() {
         initiateAdapter()
         searchOnImage()
+        collectAction()
     }
 
     private fun initiateAdapter() {
@@ -37,5 +40,17 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
                 return true
             }
         })
+    }
+
+    private fun collectAction() {
+        collect(viewModel.effect) { effect ->
+            effect.getContentIfHandled()?.let { navigateToViewAlbumImageFragment(it) }
+        }
+    }
+
+    private fun navigateToViewAlbumImageFragment(imageId: Int) {
+        val action = AlbumDetailsFragmentDirections
+            .actionAlbumDetailsFragmentToViewPhotoFragment(imageId)
+        findNavController().navigate(action)
     }
 }
