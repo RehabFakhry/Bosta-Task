@@ -1,6 +1,8 @@
 package com.bosta.bostatask.ui.utils
 
+import android.view.View
 import android.widget.ImageView
+import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bosta.bostatask.R
@@ -20,4 +22,9 @@ fun bindImage(image: ImageView, imageURL: String?) {
             .placeholder(R.drawable.image_placeholder)
             .into(image)
     }
+}
+
+@BindingAdapter("app:showIfTrue")
+fun showIfTrue(view: View, condition: Boolean) {
+    view.isVisible = condition
 }
