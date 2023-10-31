@@ -2,7 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-//    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs")
+//    id("androidx.navigation.safeargs.kotlin")
     id("com.google.dagger.hilt.android")
 }
 
@@ -70,10 +71,16 @@ dependencies {
     // Glide dependency
     implementation("com.github.bumptech.glide:glide:4.15.1")
 
+    // coil
+    implementation ("io.coil-kt:coil:2.2.2")
+
     // LiveData and related dependencies
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.activity:activity-ktx:1.3.1")
     implementation("androidx.fragment:fragment-ktx:1.3.6")
+
+    val lottieVersion = "3.4.0"
+    implementation("com.airbnb.android:lottie:$lottieVersion")
 
     // Hilt dependencies
     implementation("com.google.dagger:hilt-android:2.44")

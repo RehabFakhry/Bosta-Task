@@ -1,4 +1,4 @@
-package com.bosta.bostatask.ui.feature.home
+package com.bosta.bostatask.ui.feature.profile
 
 import com.bosta.bostatask.domain.model.UserAlbums
 import com.bosta.bostatask.domain.model.UserInfo
@@ -7,22 +7,15 @@ import com.bosta.bostatask.domain.model.UserInfo
 data class HomeUiState(
     val isLoading: Boolean = true,
     val isError: Boolean = false,
-    val userInfo: List<UserInfoUiState> = emptyList(),
+    val user: UserInfoUiState = UserInfoUiState(),
     val userAlbums: List<UserAlbumsUiState> = emptyList()
 )
 
 data class UserInfoUiState(
-    val address: UserAddress = UserAddress(),
     val id: Int? = 0,
-    val name: String? = ""
-)
-
-data class UserAddress(
-    val city: String? = "",
-    val street: String? = "",
-    val suite: String? = "",
-    val zipcode: String? = ""
-)
+    val name: String? = "",
+    val address: String = "",
+    )
 
 data class UserAlbumsUiState(
     val id: Int? = 0,
@@ -31,16 +24,15 @@ data class UserAlbumsUiState(
 )
 
 fun UserInfo.toUserInfoUiState(): UserInfoUiState {
- return UserInfoUiState(
-     address = UserAddress(
-         city = address?.city,
-         street = address?.street,
-         suite = address?.suite,
-         zipcode = address?.zipcode
-     ),
-     id = id,
-     name = name
- )
+    val addressLine = listOf(address?.street, address?.suite, address?.city, address?.zipcode)
+        .filterNotNull()
+        .joinToString(", ")
+
+    return UserInfoUiState(
+        id = id,
+        name = name,
+        address = addressLine
+    )
 }
 
 fun UserAlbums.toUserAlbumsUiState(): UserAlbumsUiState {
