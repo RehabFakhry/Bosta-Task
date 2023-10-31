@@ -37,8 +37,5 @@ class AlbumDetailsFragment : BaseFragment<FragmentAlbumDetailsBinding>() {
                 return true
             }
         })
-
     }
 }
-
-

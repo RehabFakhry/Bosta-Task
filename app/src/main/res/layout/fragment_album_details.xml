@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.bosta.bostatask.ui.feature.home.UserAlbumsUiState" />
+            type="com.bosta.bostatask.ui.feature.profile.UserAlbumsUiState" />
 
         <variable
             name="viewModel"
@@ -19,48 +19,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_album_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@{item.title}"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="album name" />
-
-        <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/dividerId"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="2dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_album_name" />
-
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp"
+            android:layout_marginVertical="16dp"
+            android:layout_marginHorizontal="12dp"
             android:background="@drawable/rounded_corner_searchview"
             android:iconifiedByDefault="false"
             android:queryHint="Search in images"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_album_name" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_album_photos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
             android:orientation="vertical"
             app:items="@{viewModel.state.albumPhoto}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -69,6 +45,19 @@
             app:layout_constraintTop_toBottomOf="@id/searchView"
             app:spanCount="3"
             tools:listitem="@layout/item_album_details" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_1"
+            android:layout_marginTop="52dp"
+            app:showIfTrue="@{viewModel.state.isLoading}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

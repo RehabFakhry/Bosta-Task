@@ -5,7 +5,7 @@ import com.bosta.bostatask.ui.base.BaseAdapter
 import com.bosta.bostatask.ui.base.BaseInteractionListener
 
 class AlbumDetailsAdapter(listener: AlbumDetailsInteractionListener)
-    : BaseAdapter<AlbumDetailsUiState>(listener) {
+    : BaseAdapter<UserAlbumPhotos>(listener) {
     override val layoutId: Int = R.layout.item_album_details
 }
 
