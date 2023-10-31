@@ -6,6 +6,7 @@ data class AlbumDetailsUiState(
     val isLoading: Boolean = true,
     val isError: Boolean = false,
     val albumPhoto: List<UserAlbumPhotos> = emptyList(),
+    val photo: UserAlbumPhotos = UserAlbumPhotos(0,0,"",""),
     val albumImage: String = ""
 )
 

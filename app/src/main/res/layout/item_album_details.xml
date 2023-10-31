@@ -8,6 +8,10 @@
         <variable
             name="item"
             type="com.bosta.bostatask.ui.feature.album_details.UserAlbumPhotos" />
+
+        <variable
+            name="listener"
+            type="com.bosta.bostatask.ui.feature.album_details.AlbumDetailsInteractionListener" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -20,7 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            tools:src="@drawable/image_onboarding"
+            tools:src="@drawable/image_dummy"
+            android:onClick="@{() ->listener.onClickAlbumImage(item.id)}"
             app:loadImage="@{item.thumbnailUrl}" />
 
     </androidx.cardview.widget.CardView>

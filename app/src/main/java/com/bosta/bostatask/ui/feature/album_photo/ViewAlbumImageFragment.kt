@@ -5,11 +5,14 @@ import androidx.lifecycle.ViewModel
 import com.bosta.bostatask.R
 import com.bosta.bostatask.databinding.FragmentViewAlbumImageBinding
 import com.bosta.bostatask.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ViewAlbumImageFragment : BaseFragment<FragmentViewAlbumImageBinding>() {
+
     override val TAG: String = this::class.java.simpleName
     override val layoutIdFragment: Int = R.layout.fragment_view_album_image
-    override val viewModel: ViewModel by viewModels()
+    override val viewModel: ViewAlbumImageViewModel by viewModels()
 
 }

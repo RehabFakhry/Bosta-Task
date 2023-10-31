@@ -7,11 +7,10 @@
     <data>
 
         <variable
-            name="item"
-            type="com.bosta.bostatask.ui.feature.album_details.UserAlbumPhotos" />
+            name="viewModel"
+            type="com.bosta.bostatask.ui.feature.album_photo.ViewAlbumImageViewModel" />
 
     </data>
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +19,9 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:loadImage="@{item.thumbnailUrl}"/>
+            tools:src="@drawable/image_dummy"
+            android:scaleType="centerCrop"
+            app:loadImage="@{viewModel.state.photo.thumbnailUrl}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

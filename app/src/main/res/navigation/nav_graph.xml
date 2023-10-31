@@ -38,7 +38,7 @@
         android:label="fragment_view_photo"
         tools:layout="@layout/fragment_view_album_image" >
         <argument
-            android:name="imageId"
+            android:name="id"
             app:argType="integer" />
 </fragment>
 

@@ -28,7 +28,7 @@ class ViewAlbumImageViewModel @Inject constructor(
     private fun getAllPhotosForAlbum() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(
-            {getUserAlbumPhotoUseCase(args.imageId).map { it.toUserAlbumPhoto() }},
+            {getUserAlbumPhotoUseCase(args.id).map { it.toUserAlbumPhoto() }},
             ::onGetUserAlbumPhotosSuccess,
             ::onGetUserAlbumPhotosError
         )
@@ -53,7 +53,7 @@ class ViewAlbumImageViewModel @Inject constructor(
 
 
     private fun getAlbumSingleImage(){
-        val albumPhoto = _state.value.albumPhoto.firstOrNull{ it.id == args.imageId }
+        val albumPhoto = _state.value.albumPhoto.firstOrNull{ it.id == args.id }
         _state.update { it.copy(albumImage = albumPhoto?.thumbnailUrl.toString()) }
     }
 }

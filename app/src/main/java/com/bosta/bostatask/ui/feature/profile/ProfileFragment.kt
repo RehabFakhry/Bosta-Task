@@ -27,11 +27,11 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
 
     private fun collectAction(){
        collect(viewModel.effect) { effect ->
-           effect.getContentIfHandled()?.let { navigateToAlbumPhotosFragment(it) }
+           effect.getContentIfHandled()?.let { navigateToAlbumDetailsFragment(it) }
        }
     }
 
-    private fun navigateToAlbumPhotosFragment(id: Int){
+    private fun navigateToAlbumDetailsFragment(id: Int){
         val action = ProfileFragmentDirections.actionProfileFragmentToAlbumDetailsFragment(id)
         findNavController().navigate(action)
     }
