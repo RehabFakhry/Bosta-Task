@@ -9,6 +9,11 @@ import com.bosta.bostatask.R
 import com.bosta.bostatask.ui.base.BaseAdapter
 import com.bumptech.glide.Glide
 
+@BindingAdapter("app:showIfTrue")
+fun showIfTrue(view: View, condition: Boolean) {
+    view.isVisible = condition
+}
+
 @BindingAdapter(value = ["app:items"])
 fun <T> setRecyclerItems(view: RecyclerView, items: List<T>?) {
     (view.adapter as BaseAdapter<T>?)?.setItems(items ?: emptyList())
@@ -24,7 +29,11 @@ fun bindImage(image: ImageView, imageURL: String?) {
     }
 }
 
-@BindingAdapter("app:showIfTrue")
-fun showIfTrue(view: View, condition: Boolean) {
-    view.isVisible = condition
+@BindingAdapter("app:showPlaceholder")
+fun showPlaceholder(imageView: ImageView, show: Boolean) {
+    if (show) {
+        imageView.visibility = View.VISIBLE
+    } else {
+        imageView.visibility = View.GONE
+    }
 }
