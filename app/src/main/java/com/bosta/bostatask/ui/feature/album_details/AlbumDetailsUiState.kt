@@ -5,7 +5,8 @@ import com.bosta.bostatask.domain.model.UserAlbumPhoto
 data class AlbumDetailsUiState(
     val isLoading: Boolean = true,
     val isError: Boolean = false,
-    val albumPhoto: List<UserAlbumPhotos> = emptyList()
+    val albumPhoto: List<UserAlbumPhotos> = emptyList(),
+    val albumImage: String = ""
 )
 
 data class UserAlbumPhotos(

@@ -27,7 +27,19 @@
             android:id="@+id/action_albumDetailsFragment_to_profileFragment"
             app:destination="@id/profileFragment"
             app:popUpTo="@id/profileFragment"/>
+        <action
+            android:id="@+id/action_albumDetailsFragment_to_viewPhotoFragment"
+            app:destination="@id/viewPhotoFragment" />
 
     </fragment>
+    <fragment
+        android:id="@+id/viewPhotoFragment"
+        android:name="com.bosta.bostatask.ui.feature.album_photo.ViewAlbumImageFragment"
+        android:label="fragment_view_photo"
+        tools:layout="@layout/fragment_view_album_image" >
+        <argument
+            android:name="imageId"
+            app:argType="integer" />
+</fragment>
 
 </navigation>
