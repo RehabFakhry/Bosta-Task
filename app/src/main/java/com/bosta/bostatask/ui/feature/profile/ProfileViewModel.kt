@@ -1,4 +1,4 @@
-package com.bosta.bostatask.ui.feature.home
+package com.bosta.bostatask.ui.feature.profile
 
 import androidx.lifecycle.viewModelScope
 import com.bosta.bostatask.domain.usecase.GetUserAlbumsUseCase
@@ -9,10 +9,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.random.Random
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class ProfileViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val getUserAlbumsUseCase: GetUserAlbumsUseCase
 ): BaseViewModel<HomeUiState, Int>(HomeUiState()), HomeInteractionListener {
@@ -27,7 +26,7 @@ class HomeViewModel @Inject constructor(
     private fun getUserInfo() {
             _state.update { it.copy(isLoading = true) }
             tryToExecute(
-                { getUserInfoUseCase(1).map { it.toUserInfoUiState() }},
+                { getUserInfoUseCase().map { it.toUserInfoUiState() }},
                 ::onGeUserInfoSuccess,
                 ::onGetUserInfoError,
             )
@@ -36,7 +35,7 @@ class HomeViewModel @Inject constructor(
     private fun getUserAlbums() {
         _state.update { it.copy(isLoading = true) }
         tryToExecute(
-            { getUserAlbumsUseCase(1).map { it.toUserAlbumsUiState() } },
+            { getUserAlbumsUseCase().map { it.toUserAlbumsUiState() } },
             ::onGetUserAlbumsSuccess,
             ::onGetUserAlbumsError
         )
@@ -47,17 +46,16 @@ class HomeViewModel @Inject constructor(
             it.copy(
                 isLoading = false,
                 isError = false,
-                userInfo = userInfo
+                user = userInfo.firstOrNull()!!,
             )
         }
-        log("data fetched successfully")
+        log("data fetched successfully: ${state.value.user}")
     }
 
     private fun onGetUserInfoError(exception: Exception) {
         _state.update { it.copy(isLoading = false, isError = true) }
         log("error fetching data")
     }
-
 
     private fun onGetUserAlbumsSuccess(userAlbums: List<UserAlbumsUiState>) {
         _state.update {
@@ -71,7 +69,6 @@ class HomeViewModel @Inject constructor(
 
     private fun onGetUserAlbumsError(error: Exception) =
         _state.update { it.copy(isLoading = false, isError = true) }
-
 
     override fun onClickAlbum(albumId: Int) {
         viewModelScope.launch { _effect.emit(EventHandler(albumId)) }

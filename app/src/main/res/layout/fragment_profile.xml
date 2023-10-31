@@ -2,17 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.feature.home.HomeFragment">
+    tools:context=".ui.feature.profile.ProfileFragment">
 
     <data>
 
         <variable
             name="item"
-            type="com.bosta.bostatask.ui.feature.home.UserInfoUiState" />
+            type="com.bosta.bostatask.ui.feature.profile.UserInfoUiState" />
 
         <variable
             name="viewModel"
-            type="com.bosta.bostatask.ui.feature.home.HomeViewModel" />
+            type="com.bosta.bostatask.ui.feature.profile.ProfileViewModel" />
 
     </data>
 
@@ -22,29 +22,17 @@
         android:layout_marginHorizontal="8dp">
 
         <TextView
-            android:id="@+id/tv_profile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
-            android:text="@string/profile"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/tv_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
-            android:text="@{item.name}"
+            android:text="@{viewModel.state.user.name}"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="26sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_profile"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="UserName" />
 
         <TextView
@@ -52,10 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="10dp"
-            android:text="@{item.address.city + item.address.street + item.address.suite + item.address.zipcode}"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
+            android:text="@{viewModel.state.user.address}"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_user_name"
@@ -65,7 +51,7 @@
             android:id="@+id/tv_user_album"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
+            android:layout_marginTop="10dp"
             android:text="@string/my_albums"
             android:textColor="@color/black"
             android:textSize="24sp"
@@ -74,19 +60,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_address" />
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_albums"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
             android:orientation="vertical"
+            android:layout_marginVertical="16dp"
             app:items="@{viewModel.state.userAlbums}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_user_album"
             tools:listitem="@layout/item_user_album" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/loading"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="104dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_user_album"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loading_1"
+            app:showIfTrue="@{viewModel.state.isLoading}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

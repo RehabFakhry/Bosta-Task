@@ -1,19 +1,19 @@
-package com.bosta.bostatask.ui.feature.home
+package com.bosta.bostatask.ui.feature.profile
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.bosta.bostatask.R
-import com.bosta.bostatask.databinding.FragmentHomeBinding
+import com.bosta.bostatask.databinding.FragmentProfileBinding
 import com.bosta.bostatask.ui.base.BaseFragment
 import com.bosta.bostatask.ui.utils.collect
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     override val TAG: String = this::class.java.simpleName
-    override val layoutIdFragment: Int = R.layout.fragment_home
-    override val viewModel: HomeViewModel by viewModels()
-    private val homeAdapter: HomeAdapter by lazy { HomeAdapter(viewModel) }
+    override val layoutIdFragment: Int = R.layout.fragment_profile
+    override val viewModel: ProfileViewModel by viewModels()
+    private val profileAdapter: ProfileAdapter by lazy { ProfileAdapter(viewModel) }
 
 
     override fun setup() {
@@ -22,7 +22,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun initiateAdapter() {
-        binding.recyclerViewAlbums.adapter = homeAdapter
+        binding.recyclerViewAlbums.adapter = profileAdapter
     }
 
     private fun collectAction(){
@@ -32,7 +32,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun navigateToAlbumPhotosFragment(id: Int){
-        val action = HomeFragmentDirections.actionHomeFragmentToAlbumDetailsFragment(id)
+        val action = ProfileFragmentDirections.actionProfileFragmentToAlbumDetailsFragment(id)
         findNavController().navigate(action)
     }
 }
